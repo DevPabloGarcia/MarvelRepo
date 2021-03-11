@@ -1,0 +1,4 @@
+<resources>
+    <string name="app_name">Marvel</string>
+    <string name="loading_error">Algo ha ido mal, intentelo de nuevo</string>
+</resources>
