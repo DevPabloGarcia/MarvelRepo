@@ -11,11 +11,11 @@ import kotlin.coroutines.suspendCoroutine
 
 class ObtainCharactersUseCase @Inject constructor(): BaseUseCase() {
 
-    suspend fun get() = withContext(Dispatchers.IO) {
+    suspend fun get(offset: Int = 0) = withContext(Dispatchers.IO) {
 
         suspendCoroutine { continuation : Continuation<DataResult<List<Character>>> ->
 
-            repository.getCharacters(BaseCallBackContinuation(continuation))
+            repository.getCharacters(offset, BaseCallBackContinuation(continuation))
         }
     }
 }

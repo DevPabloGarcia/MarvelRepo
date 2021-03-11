@@ -11,10 +11,10 @@ import retrofit2.Call
 
 class CloudRepository : DataRepository {
 
-    override fun getCharacters(callback: BaseCallback<List<Character>>) {
+    override fun getCharacters(offset: Int, callback: BaseCallback<List<Character>>) {
 
         val client: WebServiceInterface = WebServices.createService(WebServiceInterface::class.java)
-        val call: Call<CharactersResponse> = client.getCharacters()
+        val call: Call<CharactersResponse> = client.getCharacters(offset)
         enqueueCall(
             call,
             CharactersMapper(),

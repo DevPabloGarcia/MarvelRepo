@@ -24,22 +24,21 @@ private const val HEADER_API_KEY = "apikey"
 
 private const val HEADER_HASH = "hash"
 
+private const val HEADER_OFFSET = "offset"
+
 object WebServices {
 
     /**
      * Create service adding url end point and header params
      *
-     * @param urlEndpoint
      * @param serviceClass
      */
     fun <S> createService(serviceClass: Class<S>): S {
-
         val httpClient = OkHttpClient.Builder()
         val builder = Retrofit.Builder().addConverterFactory(GsonConverterFactory.create())
         httpClient.addInterceptor { chain -> return@addInterceptor addHeaderParams(chain) }
         httpClient.connectTimeout(HTTP_TIMEOUT_SECS.toLong(), TimeUnit.SECONDS)
         httpClient.readTimeout(HTTP_TIMEOUT_SECS.toLong(), TimeUnit.SECONDS)
-
         val retrofit: Retrofit = builder
             .baseUrl(URL_BACKEND)
             .client(httpClient.build())
@@ -56,7 +55,6 @@ object WebServices {
      * @return response
      */
     private fun addHeaderParams(chain: Interceptor.Chain): Response {
-
         val request = chain.request().newBuilder()
         val originalHttpUrl = chain.request().url
         val newUrl = originalHttpUrl.newBuilder().apply {

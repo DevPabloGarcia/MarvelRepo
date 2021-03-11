@@ -17,27 +17,24 @@ class CharacterListViewModel @Inject constructor(
     var characters : MutableLiveData<List<Character>> = MutableLiveData()
 
     fun onViewCreated() {
-
         if (characters.value.isNullOrEmpty()) {
-
             loadCharacters()
         }
     }
 
     fun loadCharacters() {
-
         GlobalScope.launch {
-
             uiState.postValue(UiState.LOADING)
             try {
-
                 val result = obtainCharactersUseCase.get()
                 uiState.postValue(UiState.SUCCESS)
                 characters.postValue(result.value)
             } catch (ex: DataException) {
 
                 uiState.postValue(UiState.ERROR)
-            } finally { }
+            } finally {
+
+            }
         }
     }
 }
