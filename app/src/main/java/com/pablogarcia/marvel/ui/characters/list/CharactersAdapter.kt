@@ -5,6 +5,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
+import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.RecyclerView
 import com.pablogarcia.marvel.R
 import com.pablogarcia.marvel.model.Character
@@ -74,12 +75,14 @@ class CharacterViewHolder(private val view: View,
 
     private val nameView: TextView = view.findViewById(R.id.row_character_name)
     private val imageView: ImageView = view.findViewById(R.id.row_character_image)
+    private val likeImageView: ImageView = view.findViewById(R.id.row_character_like)
 
     fun bind(character: Character?) {
 
         character?.run {
 
             nameView.text = name
+            if (character.id?.rem(2) == 0) likeImageView.setImageDrawable(ContextCompat.getDrawable(view.context, R.drawable.ic_like_selected))
             Picasso.with(view.context)
                 .load(character.obtainImage(Character.Companion.ImageType.LANDSCAPE_LARGE))
                 .into(imageView)

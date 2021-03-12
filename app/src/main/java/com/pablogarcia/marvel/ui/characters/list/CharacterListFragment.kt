@@ -15,6 +15,7 @@ import com.pablogarcia.marvel.di.MarvelApplication
 import com.pablogarcia.marvel.model.Character
 import com.pablogarcia.marvel.ui.base.BaseFragment
 import com.pablogarcia.marvel.ui.base.UiState
+import com.pablogarcia.marvel.ui.custom.LoadDataRecyclerView
 import com.pablogarcia.marvel.ui.custom.LoadingView
 import javax.inject.Inject
 
@@ -23,7 +24,7 @@ class CharacterListFragment: BaseFragment() {
     @Inject
     lateinit var viewModel: CharacterListViewModel
 
-    private lateinit var characterRecyclerView: RecyclerView
+    private lateinit var characterRecyclerView: LoadDataRecyclerView
     private lateinit var characterSwipe: SwipeRefreshLayout
     private lateinit var loadingView: LoadingView
 
@@ -69,7 +70,9 @@ class CharacterListFragment: BaseFragment() {
 
         val adapter = CharactersAdapter(::navigateDetail)
         characterRecyclerView.adapter = adapter
-        characterRecyclerView.layoutManager = LinearLayoutManager(context)
+        characterRecyclerView.callback = {
+            viewModel.loadCharacters(fromLocal = false, showLoading = false)
+        }
         viewModel.characters.observe(viewLifecycleOwner) { _characters ->
 
             adapter.setData(_characters)
