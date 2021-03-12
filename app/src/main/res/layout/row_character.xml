@@ -1,40 +1,49 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.cardview.widget.CardView
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     xmlns:tools="http://schemas.android.com/tools"
-    android:elevation="5dp"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    app:elevation="8dp"
     android:layout_margin="8dp">
 
-    <RelativeLayout
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="200dp"
+        android:layout_height="300dp"
         android:orientation="vertical">
 
         <ImageView
             android:id="@+id/row_character_image"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="9"
             android:scaleType="centerCrop"/>
 
-        <LinearLayout
+        <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="@color/grey"
-            android:layout_alignParentBottom="true"
-            android:padding="8dp">
+            android:layout_weight="1"
+            android:paddingStart="8dp"
+            android:paddingEnd="8dp">
 
             <TextView
                 android:id="@+id/row_character_name"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textColor="@color/white"
+                android:layout_centerVertical="true"
                 android:textSize="22sp"
                 tools:text="Character Name" />
 
-        </LinearLayout>
+            <ImageView
+                android:id="@+id/row_character_like"
+                android:layout_width="@dimen/character_like"
+                android:layout_height="@dimen/character_like"
+                android:layout_centerVertical="true"
+                android:layout_alignParentEnd="true"
+                android:src="@drawable/ic_like"/>
 
-    </RelativeLayout>
+        </RelativeLayout>
+
+    </LinearLayout>
 
 </androidx.cardview.widget.CardView>
