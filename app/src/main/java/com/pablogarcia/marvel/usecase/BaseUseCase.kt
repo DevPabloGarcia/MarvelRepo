@@ -1,10 +1,11 @@
 package com.pablogarcia.marvel.usecase
 
-import com.pablogarcia.marvel.data.repository.CloudRepository
+import com.pablogarcia.marvel.data.repository.Repository
 import javax.inject.Inject
 
 abstract class BaseUseCase {
 
     @Inject
-    lateinit var repository: CloudRepository
+    lateinit var repository: Repository
+
 }

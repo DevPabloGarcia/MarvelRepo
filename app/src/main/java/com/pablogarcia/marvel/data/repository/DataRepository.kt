@@ -7,5 +7,5 @@ interface DataRepository {
     /**
      * Obtain all characters
      */
-    fun getCharacters(callback: BaseCallback<List<Character>>)
+    suspend fun getCharacters(fromLocal: Boolean) : Result<List<Character>>
 }

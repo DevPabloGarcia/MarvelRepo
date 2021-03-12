@@ -14,28 +14,3 @@ interface BaseCallback<T> {
     fun always()
 
 }
-
-class BaseCallBackContinuation<T>(
-    private val continuation: Continuation<DataResult<T>>
-) : BaseCallback<T> {
-
-    override fun onSuccess(httpCode: Int, data: T?) = continuation.resume(
-        DataResult(httpCode, data)
-    )
-
-    override fun onError(httpCode: Int, bundle: Bundle) = continuation.resumeWithException(
-        DataException(httpCode, bundle)
-    )
-
-    override fun always() {}
-}
-
-data class DataException(
-    var httpCode: Int,
-    var bundle: Bundle
-) : Exception()
-
-data class DataResult<T>(
-    var httpCode: Int,
-    var value: T?
-)

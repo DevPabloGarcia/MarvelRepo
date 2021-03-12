@@ -1,7 +1,8 @@
-package com.pablogarcia.marvel.data.repository
+package com.pablogarcia.marvel.framework.retrofit
 
 import android.os.Bundle
 import com.pablogarcia.marvel.data.mapper.BaseMapper
+import com.pablogarcia.marvel.data.repository.BaseCallback
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -36,5 +37,4 @@ class CloudRepositoryCallback<T, R> : Callback<T> {
         }
         callback?.always()
     }
-
 }
