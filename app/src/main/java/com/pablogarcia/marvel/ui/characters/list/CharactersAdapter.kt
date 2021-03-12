@@ -87,7 +87,7 @@ class CharacterViewHolder(private val view: View,
                 .load(character.obtainImage(Character.Companion.ImageType.LANDSCAPE_LARGE))
                 .into(imageView)
         }
-        character?.let {
+        character?.let {//
 
             view.setOnClickListener { onItemClickListener.invoke(character) }
         }
