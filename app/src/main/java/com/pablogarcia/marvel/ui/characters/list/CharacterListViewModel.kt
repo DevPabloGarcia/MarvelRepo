@@ -24,9 +24,9 @@ class CharacterListViewModel @Inject constructor(
         }
     }
 
-    fun loadCharacters(fromLocal: Boolean) {
+    fun loadCharacters(fromLocal: Boolean, showLoading: Boolean = true) {
 
-        uiState.postValue(UiState.LOADING)
+        if (showLoading) uiState.postValue(UiState.LOADING)
         viewModelScope.launch(Dispatchers.IO) {
             when (val result = obtainCharactersUseCase.get(fromLocal)) {
                 is Result.Success -> {
