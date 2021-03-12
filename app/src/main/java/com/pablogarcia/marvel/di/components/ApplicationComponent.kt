@@ -3,7 +3,7 @@ package com.pablogarcia.marvel.di.components
 import android.content.Context
 import com.pablogarcia.marvel.di.MarvelApplication
 import com.pablogarcia.marvel.di.modules.ApplicationModule
-import com.pablogarcia.marvel.data.repository.CloudRepository
+import com.pablogarcia.marvel.data.repository.cloud.CloudRepository
 import com.pablogarcia.marvel.ui.characters.detail.CharacterDetailFragment
 import com.pablogarcia.marvel.ui.characters.list.CharacterListFragment
 import dagger.Component

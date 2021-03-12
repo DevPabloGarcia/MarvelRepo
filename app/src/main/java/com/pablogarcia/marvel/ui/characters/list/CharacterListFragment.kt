@@ -12,10 +12,10 @@ import androidx.recyclerview.widget.RecyclerView
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
 import com.pablogarcia.marvel.R
 import com.pablogarcia.marvel.di.MarvelApplication
-import com.pablogarcia.marvel.ui.base.BaseFragment
-import com.pablogarcia.marvel.ui.custom.LoadingView
 import com.pablogarcia.marvel.model.Character
+import com.pablogarcia.marvel.ui.base.BaseFragment
 import com.pablogarcia.marvel.ui.base.UiState
+import com.pablogarcia.marvel.ui.custom.LoadingView
 import javax.inject.Inject
 
 class CharacterListFragment: BaseFragment() {
@@ -99,14 +99,14 @@ class CharacterListFragment: BaseFragment() {
 
         characterSwipe.setOnRefreshListener {
 
-            viewModel.loadCharacters()
+            viewModel.loadCharacters(fromLocal = false)
         }
     }
 
     /**
      * Navigate to character detail
      *
-     * @cha
+     * @character
      */
     private fun navigateDetail(character: Character) {
 

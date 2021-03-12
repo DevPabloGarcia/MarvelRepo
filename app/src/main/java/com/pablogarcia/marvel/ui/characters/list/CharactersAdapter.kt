@@ -12,40 +12,65 @@ import com.squareup.picasso.Picasso
 
 class CharactersAdapter(
     private var onItemClickListener: (Character) -> Unit
-) : RecyclerView.Adapter<CharacterViewHolder>() {
+) : RecyclerView.Adapter<BaseViewHolder>() {
 
-    private var characters: List<Character>? = null
+    private var characters: MutableList<Character> = mutableListOf()
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): CharacterViewHolder {
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): BaseViewHolder {
 
-        return CharacterViewHolder(
-            LayoutInflater.from(parent.context).inflate(R.layout.row_character, parent, false),
-            onItemClickListener
-        )
-    }
-
-    override fun getItemCount(): Int = characters?.size ?: 0
-
-
-    override fun onBindViewHolder(holder: CharacterViewHolder, position: Int) {
-
-        characters?.let {_characters ->
-
-            holder.bind(_characters[position])
+        when (viewType){
+            LOADING_ROW -> {
+                return LoadingViewHolder(
+                    LayoutInflater.from(parent.context).inflate(
+                        R.layout.row_loading,
+                        parent,
+                        false
+                    )
+                )
+            }
+            else -> {
+                return CharacterViewHolder(
+                    LayoutInflater.from(parent.context).inflate(R.layout.row_character, parent, false),
+                    onItemClickListener
+                )
+            }
         }
     }
 
-    fun setData(characters: List<Character>?) {
+    override fun getItemCount(): Int = characters.size.plus(1)
 
-        this.characters = characters
+    override fun onBindViewHolder(holder: BaseViewHolder, position: Int) {
+
+        if (holder is CharacterViewHolder && position < characters.size){
+            characters.let {_characters ->
+                holder.bind(_characters[position])
+            }
+        }
+    }
+
+    override fun getItemViewType(position: Int): Int {
+        if (position == characters.size) {
+            return LOADING_ROW
+        }
+        return CHARACTER_ROW
+    }
+
+    fun setData(characters: List<Character>) {
+        this.characters.addAll(characters)
         notifyDataSetChanged()
     }
 
+    companion object {
+        const val CHARACTER_ROW = 0
+        const val LOADING_ROW = 1
+    }
 }
 
-class CharacterViewHolder(val view: View,
-                          val onItemClickListener: (Character) -> Unit
-) : RecyclerView.ViewHolder(view) {
+open class BaseViewHolder(view: View) : RecyclerView.ViewHolder(view)
+
+class CharacterViewHolder(private val view: View,
+                          private val onItemClickListener: (Character) -> Unit
+) : BaseViewHolder(view) {
 
     private val nameView: TextView = view.findViewById(R.id.row_character_name)
     private val imageView: ImageView = view.findViewById(R.id.row_character_image)
@@ -65,3 +90,5 @@ class CharacterViewHolder(val view: View,
         }
     }
 }
+
+class LoadingViewHolder(view: View) : BaseViewHolder(view)

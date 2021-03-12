@@ -1,9 +1,16 @@
 package com.pablogarcia.marvel.di.modules
 
 import android.content.Context
+import com.pablogarcia.marvel.framework.room.mapper.CharacterToRoomMapper
+import com.pablogarcia.marvel.framework.room.mapper.RoomToCharacterMapper
 import com.pablogarcia.marvel.di.MarvelApplication
-import com.pablogarcia.marvel.data.repository.CloudRepository
-import com.pablogarcia.marvel.usecase.ObtainCharactersUseCase
+import com.pablogarcia.marvel.data.repository.cloud.CloudRepository
+import com.pablogarcia.marvel.data.repository.local.LocalRepository
+import com.pablogarcia.marvel.data.repository.Repository
+import com.pablogarcia.marvel.data.repository.cloud.CloudRepositoryInterface
+import com.pablogarcia.marvel.data.repository.local.LocalRepositoryInterface
+import com.pablogarcia.marvel.framework.retrofit.RetrofitRepository
+import com.pablogarcia.marvel.framework.room.RoomDatabase
 import dagger.Module
 import dagger.Provides
 import javax.inject.Singleton
@@ -19,6 +26,19 @@ class ApplicationModule(private val application: MarvelApplication) {
     fun provideAppContext(): Context = application
 
     @Provides
-    fun provideRepository(): CloudRepository = CloudRepository()
+    fun provideRepository(cloudRepository: CloudRepository,
+                          localRepository: LocalRepository
+    ): Repository = Repository(cloudRepository, localRepository)
 
+    @Provides
+    fun provideCloudRepository() : CloudRepositoryInterface = RetrofitRepository()
+
+    @Provides
+    fun provideLocalRepository(characterToRoomMapper: CharacterToRoomMapper,
+                               roomToCharacterMapper: RoomToCharacterMapper
+    ) : LocalRepositoryInterface = RoomDatabase(
+        application,
+        characterToRoomMapper,
+        roomToCharacterMapper
+    )
 }

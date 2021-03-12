@@ -1,4 +1,4 @@
-package com.pablogarcia.marvel.data.ws
+package com.pablogarcia.marvel.framework.retrofit
 
 import okhttp3.Interceptor
 import okhttp3.OkHttpClient
@@ -24,9 +24,7 @@ private const val HEADER_API_KEY = "apikey"
 
 private const val HEADER_HASH = "hash"
 
-private const val HEADER_OFFSET = "offset"
-
-object WebServices {
+object RetrofitServiceInterface {
 
     /**
      * Create service adding url end point and header params

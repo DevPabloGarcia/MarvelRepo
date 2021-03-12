@@ -1,21 +1,13 @@
 package com.pablogarcia.marvel.usecase
 
-import com.pablogarcia.marvel.data.repository.BaseCallBackContinuation
-import com.pablogarcia.marvel.data.repository.DataResult
+import com.pablogarcia.marvel.data.repository.Result
 import com.pablogarcia.marvel.model.Character
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.withContext
 import javax.inject.Inject
-import kotlin.coroutines.Continuation
-import kotlin.coroutines.suspendCoroutine
 
 class ObtainCharactersUseCase @Inject constructor(): BaseUseCase() {
 
-    suspend fun get(offset: Int = 0) = withContext(Dispatchers.IO) {
+    suspend fun get(fromLocal: Boolean) : Result<List<Character>> {
 
-        suspendCoroutine { continuation : Continuation<DataResult<List<Character>>> ->
-
-            repository.getCharacters(offset, BaseCallBackContinuation(continuation))
-        }
+        return repository.getCharacters(fromLocal)
     }
 }
