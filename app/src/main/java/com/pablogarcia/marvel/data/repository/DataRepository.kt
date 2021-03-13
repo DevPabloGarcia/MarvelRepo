@@ -11,7 +11,7 @@ interface DataRepository {
      * @param favorites - true if must get favorites characters
      * @return list of characters
      */
-    suspend fun getCharacters(fromLocal: Boolean, favorites: Boolean): Result<List<Character>>
+    suspend fun getCharacters(fromLocal: Boolean): Result<List<Character>>
 
     /**
      * Update character
