@@ -14,6 +14,7 @@ class CharacterToRoomMapper @Inject constructor(): BaseMapper<Character, com.pab
             name = data?.name
             description = data?.description
             thumbnail = Thumbnail(data?.thumbnail?.path, data?.thumbnail?.extension)
+            like = if (data?.like == true) 1 else 0
         }
     }
 

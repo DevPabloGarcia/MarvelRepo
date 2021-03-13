@@ -30,9 +30,21 @@ class RoomDatabase @Inject constructor(application: Application,
         return Result.Success(characters)
     }
 
+    override suspend fun getFavoriteCharacters(): Result<List<Character>> {
+        val characters = mutableListOf<Character>()
+        characterDao?.getFavoriteCharacters()?.forEach { _character ->
+            characters.add(roomToCharacterMapper.map(_character))
+        }
+        return Result.Success(characters)
+    }
+
     override suspend fun getNumberOfCharacters(): Result<Int> {
 
         val rowCount = characterDao?.getCharacterCount()
         return Result.Success(rowCount ?: 0)
+    }
+
+    override suspend fun updateCharacter(character: Character) {
+        characterDao?.update(character = characterToRoomMapper.map(character))
     }
 }

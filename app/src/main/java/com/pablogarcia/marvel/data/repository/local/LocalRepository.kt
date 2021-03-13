@@ -11,13 +11,21 @@ class LocalRepository @Inject constructor(var localDatabase: LocalRepositoryInte
         localDatabase.insertAll(characters)
     }
 
-    suspend fun getCharacters() : Result<List<Character>> {
+    suspend fun getCharacters(favorites: Boolean): Result<List<Character>> {
 
-        return localDatabase.getCharacters()
+        return if(favorites)
+            localDatabase.getFavoriteCharacters()
+        else
+            localDatabase.getCharacters()
     }
 
-    suspend fun getCharactersCount() : Result<Int> {
+    suspend fun getCharactersCount(): Result<Int> {
 
         return localDatabase.getNumberOfCharacters()
+    }
+
+    suspend fun updateCharacter(character: Character) {
+
+        localDatabase.updateCharacter(character)
     }
 }
