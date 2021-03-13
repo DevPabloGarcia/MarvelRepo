@@ -1,6 +1,8 @@
 package com.pablogarcia.marvel.di.modules
 
 import android.content.Context
+import com.pablogarcia.marvel.data.mapper.CharactersMapper
+import com.pablogarcia.marvel.data.mapper.ComicsMapper
 import com.pablogarcia.marvel.framework.room.mapper.CharacterToRoomMapper
 import com.pablogarcia.marvel.framework.room.mapper.RoomToCharacterMapper
 import com.pablogarcia.marvel.di.MarvelApplication
@@ -31,7 +33,11 @@ class ApplicationModule(private val application: MarvelApplication) {
     ): Repository = Repository(cloudRepository, localRepository)
 
     @Provides
-    fun provideCloudRepository() : CloudRepositoryInterface = RetrofitRepository()
+    fun provideCloudRepository(charactersMapper: CharactersMapper,
+                               comicsMapper: ComicsMapper
+    ) : CloudRepositoryInterface {
+        return RetrofitRepository(charactersMapper, comicsMapper)
+    }
 
     @Provides
     fun provideLocalRepository(characterToRoomMapper: CharacterToRoomMapper,

@@ -3,6 +3,7 @@ package com.pablogarcia.marvel.data.repository
 import com.pablogarcia.marvel.data.repository.cloud.CloudRepository
 import com.pablogarcia.marvel.data.repository.local.LocalRepository
 import com.pablogarcia.marvel.model.Character
+import com.pablogarcia.marvel.model.Comic
 
 class Repository(
     var cloudRepository: CloudRepository,
@@ -21,6 +22,10 @@ class Repository(
         } else {
             loadFromCloud()
         }
+    }
+
+    override suspend fun getComics(characterId: String): Result<List<Comic>> {
+        return cloudRepository.getComics(characterId)
     }
 
     override suspend fun updateCharacter(character: Character) {

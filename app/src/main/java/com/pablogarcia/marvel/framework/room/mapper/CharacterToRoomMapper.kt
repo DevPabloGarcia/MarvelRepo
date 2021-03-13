@@ -7,14 +7,14 @@ import javax.inject.Inject
 
 class CharacterToRoomMapper @Inject constructor(): BaseMapper<Character, com.pablogarcia.marvel.framework.room.Character>() {
 
-    override fun map(data: Character?): com.pablogarcia.marvel.framework.room.Character {
+    override fun map(response: Character?): com.pablogarcia.marvel.framework.room.Character {
 
         return com.pablogarcia.marvel.framework.room.Character().apply {
-            id = data?.id ?: 0
-            name = data?.name
-            description = data?.description
-            thumbnail = Thumbnail(data?.thumbnail?.path, data?.thumbnail?.extension)
-            like = if (data?.like == true) 1 else 0
+            id = response?.id ?: 0
+            name = response?.name
+            description = response?.description
+            thumbnail = Thumbnail(response?.thumbnail?.path, response?.thumbnail?.extension)
+            like = if (response?.like == true) 1 else 0
         }
     }
 

@@ -5,8 +5,9 @@ import kotlinx.android.parcel.Parcelize
 
 @Parcelize
 data class Comic(
-    var available: Int,
-    var returned: Int,
-    var collectionURI: String,
-    var items: List<String>
+    var id: Int? = null,
+    var title: String? = null,
+    var description: String? = null,
+    var pageCount: Int? = null,
+    var thumbnail: Thumbnail? = null
 ) : Parcelable

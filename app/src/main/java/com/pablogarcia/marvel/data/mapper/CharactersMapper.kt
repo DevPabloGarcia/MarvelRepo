@@ -1,16 +1,15 @@
 package com.pablogarcia.marvel.data.mapper
 
-import com.pablogarcia.marvel.data.responses.CharacterResponse
 import com.pablogarcia.marvel.data.responses.CharactersResponse
-import com.pablogarcia.marvel.model.Character
-import com.pablogarcia.marvel.model.Thumbnail
+import com.pablogarcia.marvel.model.*
+import javax.inject.Inject
 
-class CharactersMapper: BaseMapper<CharactersResponse, List<Character>>() {
+class CharactersMapper @Inject constructor(): BaseMapper<CharactersResponse, List<Character>>() {
 
-    override fun map(data: CharactersResponse?): List<Character> {
+    override fun map(response: CharactersResponse?): List<Character> {
 
         val characterList = mutableListOf<Character>()
-        data?.data?.results?.forEach {
+        response?.data?.results?.forEach {
 
             characterList.add(mapCharacter(it))
         }
@@ -18,7 +17,7 @@ class CharactersMapper: BaseMapper<CharactersResponse, List<Character>>() {
         return characterList
     }
 
-    private fun mapCharacter(data: CharacterResponse?): Character {
+    private fun mapCharacter(data: CharactersResponse.CharacterResponse?): Character {
 
         return Character().apply {
 

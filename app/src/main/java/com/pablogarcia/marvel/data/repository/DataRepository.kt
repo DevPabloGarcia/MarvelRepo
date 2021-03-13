@@ -1,6 +1,7 @@
 package com.pablogarcia.marvel.data.repository
 
 import com.pablogarcia.marvel.model.Character
+import com.pablogarcia.marvel.model.Comic
 
 interface DataRepository {
 
@@ -12,6 +13,13 @@ interface DataRepository {
      * @return list of characters
      */
     suspend fun getCharacters(fromLocal: Boolean): Result<List<Character>>
+
+    /**
+     * Obtain comics where character appears
+     *
+     * @param characterId
+     */
+    suspend fun getComics(characterId: String): Result<List<Comic>>
 
     /**
      * Update character

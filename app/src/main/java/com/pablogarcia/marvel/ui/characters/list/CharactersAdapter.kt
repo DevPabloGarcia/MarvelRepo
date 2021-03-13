@@ -10,6 +10,7 @@ import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.RecyclerView
 import com.pablogarcia.marvel.R
 import com.pablogarcia.marvel.model.Character
+import com.pablogarcia.marvel.model.Thumbnail
 import com.squareup.picasso.Picasso
 
 class CharactersAdapter(
@@ -61,6 +62,7 @@ class CharactersAdapter(
     }
 
     override fun getItemViewType(position: Int): Int {
+
         if (!isFiltered && position == filteredCharacter.size) {
             return LOADING_ROW
         }
@@ -75,6 +77,7 @@ class CharactersAdapter(
      * @param characters
      */
     fun setData(characters: List<Character>) {
+
         this.characters.addAll(characters)
         this.filteredCharacter.addAll(characters)
         notifyDataSetChanged()
@@ -151,7 +154,7 @@ class CharactersAdapter(
                     )
                 )
                 Picasso.with(view.context)
-                    .load(character.obtainImage(Character.Companion.ImageType.LANDSCAPE_LARGE))
+                    .load(character.thumbnail?.obtainImage(Thumbnail.Companion.ImageType.LANDSCAPE_LARGE))
                     .into(imageView)
                 view.setOnClickListener { onItemClickListener.invoke(this) }
                 likeImageView.setOnClickListener { likeClicked(character) }
