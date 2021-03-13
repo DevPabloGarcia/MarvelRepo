@@ -1,9 +1,7 @@
 package com.pablogarcia.marvel.ui.characters.list
 
 import android.os.Bundle
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
+import android.view.*
 import android.widget.Toast
 import androidx.lifecycle.observe
 import androidx.navigation.fragment.findNavController
@@ -28,6 +26,8 @@ class CharacterListFragment: BaseFragment() {
     private lateinit var characterSwipe: SwipeRefreshLayout
     private lateinit var loadingView: LoadingView
 
+    private lateinit var adapter: CharactersAdapter
+
     override fun onCreate(savedInstanceState: Bundle?) {
 
         super.onCreate(savedInstanceState)
@@ -38,7 +38,7 @@ class CharacterListFragment: BaseFragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-
+        setHasOptionsMenu(true)
         return inflater.inflate(R.layout.fragment_character_list, container, false)
     }
 
@@ -47,7 +47,22 @@ class CharacterListFragment: BaseFragment() {
         super.onViewCreated(view, savedInstanceState)
         this.setupAdapter()
         this.setupSwipeLayout()
+        this.observeData()
         viewModel.onViewCreated()
+    }
+
+    override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
+        inflater.inflate(R.menu.filter_menu, menu)
+        super.onCreateOptionsMenu(menu, inflater)
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        when(item.itemId) {
+            R.id.menu_all_characters -> adapter.clearFilter()
+            R.id.menu_favorite_characters -> adapter.filterFavorites()
+        }
+
+        return super.onOptionsItemSelected(item)
     }
 
     //region OVERRIDE_METHODS
@@ -64,19 +79,13 @@ class CharacterListFragment: BaseFragment() {
     //region PRIVATE_METHODS
 
     /**
-     * Setup recycler view adapter
+     * Add observers to live data
      */
-    private fun setupAdapter() {
+    private fun observeData() {
 
-        val adapter = CharactersAdapter(::navigateDetail)
-        characterRecyclerView.adapter = adapter
-        characterRecyclerView.callback = {
-            viewModel.loadCharacters(fromLocal = false, showLoading = false)
-        }
         viewModel.characters.observe(viewLifecycleOwner) { _characters ->
 
             adapter.setData(_characters)
-            characterRecyclerView.scheduleLayoutAnimation()
         }
 
         viewModel.uiState.observe(viewLifecycleOwner) { isLoading ->
@@ -92,6 +101,19 @@ class CharacterListFragment: BaseFragment() {
                     showError()
                 }
             }
+        }
+    }
+
+    /**
+     * Setup recycler view adapter
+     */
+    private fun setupAdapter() {
+
+        adapter = CharactersAdapter(viewModel, ::navigateDetail)
+        characterRecyclerView.adapter = adapter
+        characterRecyclerView.callback = {
+            if(!adapter.isFiltered)
+                viewModel.loadCharacters(fromLocal = false, showLoading = false)
         }
     }
 

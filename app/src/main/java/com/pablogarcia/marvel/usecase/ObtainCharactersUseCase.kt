@@ -6,8 +6,8 @@ import javax.inject.Inject
 
 class ObtainCharactersUseCase @Inject constructor(): BaseUseCase() {
 
-    suspend fun get(fromLocal: Boolean) : Result<List<Character>> {
+    suspend fun get(fromLocal: Boolean, favorite: Boolean) : Result<List<Character>> {
 
-        return repository.getCharacters(fromLocal)
+        return repository.getCharacters(fromLocal, favorite)
     }
 }

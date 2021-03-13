@@ -9,10 +9,12 @@ class Repository(
     var localRepository: LocalRepository
 ) : DataRepository {
 
-    override suspend fun getCharacters(fromLocal: Boolean) : Result<List<Character>> {
+    override suspend fun getCharacters(fromLocal: Boolean,
+                                       favorites: Boolean
+    ) : Result<List<Character>> {
 
         return if (fromLocal) {
-            val result = localRepository.getCharacters()
+            val result = localRepository.getCharacters(favorites)
             if (result is Result.Success && result.data.isNullOrEmpty())
                 loadFromCloud()
             else
@@ -21,6 +23,11 @@ class Repository(
         } else {
             loadFromCloud()
         }
+    }
+
+    override suspend fun updateCharacter(character: Character) {
+
+        localRepository.updateCharacter(character)
     }
 
     /**
