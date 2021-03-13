@@ -16,7 +16,8 @@ data class Character(
     var comics: ComicList? = null,
     var stories: StoryList? = null,
     var events: EventList? = null,
-    var series: SeriesList? = null
+    var series: SeriesList? = null,
+    var like: Boolean = false
 ) : Parcelable{
 
     fun obtainImage(imageType: ImageType): String {

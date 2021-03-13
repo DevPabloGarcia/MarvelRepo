@@ -13,7 +13,7 @@ interface CharacterDao {
     fun insertAll(characters: List<Character>)
 
     @Update
-    fun update(vararg character: Character)
+    fun update(character: Character)
 
     @Delete
     fun delete(character: Character)
@@ -23,6 +23,9 @@ interface CharacterDao {
 
     @Query("SELECT * FROM " + Character.TABLE_NAME + " ORDER BY name")
     fun getCharacters(): List<Character>
+
+    @Query("SELECT * FROM " + Character.TABLE_NAME + " WHERE Character.like = 1 ORDER BY name")
+    fun getFavoriteCharacters(): List<Character>
 
     @Query("SELECT COUNT(*) FROM " + Character.TABLE_NAME)
     fun getCharacterCount(): Int?

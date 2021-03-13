@@ -40,20 +40,23 @@ class RoomDataBaseUnitText {
             id = CHARACTER_ID_ONE,
             name = CHARACTER_NAME,
             description = CHARACTER_DESCRIPTION,
-            thumbnail = Thumbnail(CHARACTER_THUMBNAIL_PATH, CHARACTER_THUMBNAIL_EXTENSION)
+            thumbnail = Thumbnail(CHARACTER_THUMBNAIL_PATH, CHARACTER_THUMBNAIL_EXTENSION),
+            like = CHARACTER_FAVORITE
         )
         characterTwo = Character(
             id = CHARACTER_ID_TWO,
             name = CHARACTER_NAME,
             description = CHARACTER_DESCRIPTION,
-            thumbnail = Thumbnail(CHARACTER_THUMBNAIL_PATH, CHARACTER_THUMBNAIL_EXTENSION)
+            thumbnail = Thumbnail(CHARACTER_THUMBNAIL_PATH, CHARACTER_THUMBNAIL_EXTENSION),
+            like = CHARACTER_NOT_FAVORITE
         )
 
         characterThree = Character(
             id = CHARACTER_ID_THREE,
             name = CHARACTER_NAME,
             description = CHARACTER_DESCRIPTION,
-            thumbnail = Thumbnail(CHARACTER_THUMBNAIL_PATH, CHARACTER_THUMBNAIL_EXTENSION)
+            thumbnail = Thumbnail(CHARACTER_THUMBNAIL_PATH, CHARACTER_THUMBNAIL_EXTENSION),
+            like = CHARACTER_FAVORITE
         )
     }
 
@@ -124,6 +127,14 @@ class RoomDataBaseUnitText {
         Assert.assertEquals(rows, 3)
     }
 
+    @Test
+    fun getFavoriteCharacters() {
+        val charactersList = listOf(characterOne, characterTwo, characterThree)
+        characterDao.insertAll(charactersList)
+        val favorites = characterDao.getFavoriteCharacters()
+        Assert.assertEquals(favorites.size, 2)
+    }
+
     companion object {
 
         private const val CHARACTER_ID_ONE = 1
@@ -134,5 +145,7 @@ class RoomDataBaseUnitText {
         private const val CHARACTER_DESCRIPTION = "test_description"
         private const val CHARACTER_THUMBNAIL_PATH = "thumbnail_path"
         private const val CHARACTER_THUMBNAIL_EXTENSION = "thumbnail_extension"
+        private const val CHARACTER_FAVORITE = 1
+        private const val CHARACTER_NOT_FAVORITE = 0
     }
 }

@@ -17,7 +17,26 @@ interface LocalRepositoryInterface {
      *
      * @return list of characters
      */
-    suspend fun getCharacters() : Result<List<Character>>
+    suspend fun getCharacters(): Result<List<Character>>
 
-    suspend fun getNumberOfCharacters() : Result<Int>
+    /**
+     * Obtain a list of characters
+     *
+     * @return list of characters
+     */
+    suspend fun getFavoriteCharacters(): Result<List<Character>>
+
+    /**
+     * Count characters
+     *
+     * @return number of characters
+     */
+    suspend fun getNumberOfCharacters(): Result<Int>
+
+    /**
+     * Update character with new data
+     *
+     * @param character - new character
+     */
+    suspend fun updateCharacter(character: Character)
 }

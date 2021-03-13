@@ -13,7 +13,8 @@ data class Character (
     @PrimaryKey(autoGenerate = false) var id: Int = 0,
     @ColumnInfo(name = "name") var name: String? = null,
     @ColumnInfo(name = "description") var description: String? = null,
-    @Embedded var thumbnail: Thumbnail? = null
+    @Embedded var thumbnail: Thumbnail? = null,
+    @ColumnInfo(name = "like") var like: Int = 0
 ) {
 
     companion object {
