@@ -1,7 +1,7 @@
 package com.pablogarcia.marvel.model
 
 import android.os.Parcelable
-import kotlinx.android.parcel.Parcelize
+import kotlinx.parcelize.Parcelize
 
 @Parcelize
 data class Thumbnail(
@@ -11,12 +11,12 @@ data class Thumbnail(
 
     fun obtainImage(imageType: ImageType): String {
 
-        val imageSufix = when (imageType) {
+        val imageSuffix = when (imageType) {
 
-            ImageType.LANDSCAPE_SMALL -> smallLandscapeSufix
-            ImageType.LANDSCAPE_LARGE -> largeLandscapeSufix
-            ImageType.PORTRAIT_SMALL -> smallPortraiteSufix
-            ImageType.PORTRAIT_LARGE -> largePortraitSufix
+            ImageType.LANDSCAPE_SMALL -> smallLandscapeSuffix
+            ImageType.LANDSCAPE_LARGE -> largeLandscapeSuffix
+            ImageType.PORTRAIT_SMALL -> smallPortraitSuffix
+            ImageType.PORTRAIT_LARGE -> largePortraitSuffix
         }
 
         var imagePrefix = path
@@ -24,7 +24,7 @@ data class Thumbnail(
 
             imagePrefix = path?.replace("http", "https")
         }
-        return "$imagePrefix$imageSufix.$extension"
+        return "$imagePrefix$imageSuffix.$extension"
     }
 
     companion object {
@@ -34,9 +34,9 @@ data class Thumbnail(
             LANDSCAPE_SMALL, LANDSCAPE_LARGE, PORTRAIT_SMALL, PORTRAIT_LARGE
         }
 
-        private const val smallLandscapeSufix = "/landscape_small"
-        private const val largeLandscapeSufix = "/landscape_incredible"
-        private const val smallPortraiteSufix = "/portrait_small"
-        private const val largePortraitSufix = "/portrait_incredible"
+        private const val smallLandscapeSuffix = "/landscape_small"
+        private const val largeLandscapeSuffix = "/landscape_incredible"
+        private const val smallPortraitSuffix = "/portrait_small"
+        private const val largePortraitSuffix = "/portrait_incredible"
     }
 }

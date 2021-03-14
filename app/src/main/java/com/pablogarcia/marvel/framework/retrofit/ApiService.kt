@@ -3,7 +3,6 @@ package com.pablogarcia.marvel.framework.retrofit
 import com.pablogarcia.marvel.data.responses.CharactersResponse
 import com.pablogarcia.marvel.data.responses.ComicsResponse
 import retrofit2.Call
-import retrofit2.Response
 import retrofit2.http.GET
 import retrofit2.http.Path
 import retrofit2.http.Query

@@ -4,10 +4,11 @@ import com.pablogarcia.marvel.data.repository.cloud.CloudRepository
 import com.pablogarcia.marvel.data.repository.local.LocalRepository
 import com.pablogarcia.marvel.model.Character
 import com.pablogarcia.marvel.model.Comic
+import javax.inject.Inject
 
-class Repository(
-    var cloudRepository: CloudRepository,
-    var localRepository: LocalRepository
+class Repository @Inject constructor(
+    private var cloudRepository: CloudRepository,
+    private var localRepository: LocalRepository
 ) : DataRepository {
 
     override suspend fun getCharacters(fromLocal: Boolean) : Result<List<Character>> {

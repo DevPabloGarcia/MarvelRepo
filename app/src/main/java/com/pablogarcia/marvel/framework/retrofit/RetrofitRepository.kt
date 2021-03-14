@@ -10,8 +10,9 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 import java.lang.Exception
 
-class RetrofitRepository(var charactersMapper: CharactersMapper,
-                         var comicsMapper: ComicsMapper
+class RetrofitRepository(
+    private var charactersMapper: CharactersMapper,
+    private var comicsMapper: ComicsMapper
 ) : CloudRepositoryInterface {
 
     override suspend fun getCharacters(offset: Int): Result<List<Character>> {

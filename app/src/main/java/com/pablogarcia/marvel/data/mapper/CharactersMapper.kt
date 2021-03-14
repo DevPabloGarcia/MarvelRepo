@@ -17,6 +17,12 @@ class CharactersMapper @Inject constructor(): BaseMapper<CharactersResponse, Lis
         return characterList
     }
 
+    /**
+     * Map character data
+     *
+     * @param data - character response data
+     * @return character model object
+     */
     private fun mapCharacter(data: CharactersResponse.CharacterResponse?): Character {
 
         return Character().apply {

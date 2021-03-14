@@ -3,21 +3,24 @@ package com.pablogarcia.marvel
 import android.os.Bundle
 import android.view.MenuItem
 import android.view.View
+
 import androidx.appcompat.app.AppCompatActivity
+import androidx.appcompat.widget.Toolbar
 import androidx.navigation.NavController
 import androidx.navigation.NavDestination
 import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.setupWithNavController
-import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : AppCompatActivity() {
 
-    lateinit var navController: NavController
+    private lateinit var navController: NavController
+    private lateinit var toolbar: Toolbar
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
+        this.bindViews()
         this.setupNavigation()
         setSupportActionBar(toolbar)
     }
@@ -33,6 +36,11 @@ class MainActivity : AppCompatActivity() {
     }
 
     //region PRIVATE_METHODS
+
+    private fun bindViews() {
+
+        toolbar = findViewById(R.id.toolbar)
+    }
 
     /**
      * Setup navigation view with bottom navigation view

@@ -17,7 +17,8 @@
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:layout_weight="9"
-            android:scaleType="centerCrop"/>
+            android:scaleType="centerCrop"
+            android:contentDescription="@string/character_row_image_content_description"/>
 
         <RelativeLayout
             android:layout_width="match_parent"
@@ -32,7 +33,9 @@
                 android:layout_height="wrap_content"
                 android:layout_centerVertical="true"
                 android:textSize="22sp"
-                tools:text="Character Name" />
+                tools:text="Character Name"
+                android:layout_toStartOf="@+id/row_character_like"
+                android:layout_alignParentStart="true"/>
 
             <ImageView
                 android:id="@+id/row_character_like"
@@ -40,7 +43,8 @@
                 android:layout_height="@dimen/character_like"
                 android:layout_centerVertical="true"
                 android:layout_alignParentEnd="true"
-                android:src="@drawable/ic_like"/>
+                android:src="@drawable/ic_like"
+                android:contentDescription="@string/character_row_like_content_description"/>
 
         </RelativeLayout>
 

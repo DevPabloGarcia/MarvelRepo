@@ -1,7 +1,7 @@
 package com.pablogarcia.marvel.model
 
 import android.os.Parcelable
-import kotlinx.android.parcel.Parcelize
+import kotlinx.parcelize.Parcelize
 import java.util.*
 
 @Parcelize
@@ -18,7 +18,4 @@ data class Character(
     var events: EventList? = null,
     var series: SeriesList? = null,
     var like: Boolean = false
-) : Parcelable{
-
-
-}
+) : Parcelable

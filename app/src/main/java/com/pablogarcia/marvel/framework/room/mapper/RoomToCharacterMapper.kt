@@ -19,14 +19,4 @@ class RoomToCharacterMapper @Inject constructor(): BaseMapper<Character, com.pab
         }
     }
 
-    fun mapAll(characters: List<Character>?) : List<com.pablogarcia.marvel.model.Character> {
-
-        val list = mutableListOf<com.pablogarcia.marvel.model.Character>()
-        characters?.forEach {
-
-            list.add(map(it))
-        }
-
-        return list
-    }
 }

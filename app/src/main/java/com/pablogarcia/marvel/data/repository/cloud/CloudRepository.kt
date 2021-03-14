@@ -7,16 +7,14 @@ import javax.inject.Inject
 
 
 class CloudRepository @Inject constructor(
-    var cloudDatabase: CloudRepositoryInterface
+    private var cloudDatabase: CloudRepositoryInterface
 ) {
 
     suspend fun getCharacters(offset: Int): Result<List<Character>> {
-
         return cloudDatabase.getCharacters(offset)
     }
 
     suspend fun getComics(characterId: String): Result<List<Comic>> {
-
         return cloudDatabase.getComics(characterId)
     }
 }

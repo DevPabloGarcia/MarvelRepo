@@ -14,7 +14,8 @@
             android:id="@+id/row_comic_image"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:scaleType="centerCrop"/>
+            android:scaleType="centerCrop"
+            android:contentDescription="@string/comic_row_image_content_description"/>
     </RelativeLayout>
 
 </androidx.cardview.widget.CardView>

@@ -4,7 +4,7 @@ import com.pablogarcia.marvel.data.repository.Result
 import com.pablogarcia.marvel.model.Character
 import javax.inject.Inject
 
-class LocalRepository @Inject constructor(var localDatabase: LocalRepositoryInterface) {
+class LocalRepository @Inject constructor(private var localDatabase: LocalRepositoryInterface) {
 
     suspend fun insertAll(characters: List<Character>) {
 

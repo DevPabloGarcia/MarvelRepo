@@ -16,7 +16,7 @@ class CharacterListViewModel @Inject constructor(
     private var obtainCharactersUseCase: ObtainCharactersUseCase,
     private var updateCharacterLikeUseCase: UpdateCharacterLikeUseCase
 ): BaseViewModel() {
-
+    
     var characters : MutableLiveData<List<Character>> = MutableLiveData()
 
     /**

@@ -7,15 +7,15 @@ import com.pablogarcia.marvel.model.Character
 import com.pablogarcia.marvel.model.Comic
 import com.pablogarcia.marvel.ui.base.BaseViewModel
 import com.pablogarcia.marvel.ui.base.UiState
-import com.pablogarcia.marvel.usecase.ObtainCharactersUseCase
 import com.pablogarcia.marvel.usecase.ObtainComicsUseCase
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
-class CharacterDetailViewModel @Inject constructor(
-    private var obtainComicsUseCase: ObtainComicsUseCase
-): BaseViewModel() {
+class CharacterDetailViewModel @Inject constructor(): BaseViewModel() {
+
+    @Inject
+    lateinit var obtainComicsUseCase: ObtainComicsUseCase
 
     var character : MutableLiveData<Character> = MutableLiveData()
     var comics : MutableLiveData<List<Comic>> = MutableLiveData()

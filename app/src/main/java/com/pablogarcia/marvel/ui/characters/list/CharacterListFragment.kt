@@ -3,7 +3,6 @@ package com.pablogarcia.marvel.ui.characters.list
 import android.os.Bundle
 import android.view.*
 import android.widget.Toast
-import androidx.lifecycle.observe
 import androidx.navigation.fragment.findNavController
 import com.pablogarcia.marvel.R
 import com.pablogarcia.marvel.di.MarvelApplication

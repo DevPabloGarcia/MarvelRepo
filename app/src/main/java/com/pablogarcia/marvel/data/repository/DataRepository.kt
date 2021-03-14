@@ -9,7 +9,6 @@ interface DataRepository {
      * Obtain all characters
      *
      * @param fromLocal - true if must get data from local database
-     * @param favorites - true if must get favorites characters
      * @return list of characters
      */
     suspend fun getCharacters(fromLocal: Boolean): Result<List<Character>>

@@ -9,8 +9,8 @@ import com.pablogarcia.marvel.model.Character
 import javax.inject.Inject
 
 class RoomDatabase @Inject constructor(application: Application,
-                                       var characterToRoomMapper: CharacterToRoomMapper,
-                                       var roomToCharacterMapper: RoomToCharacterMapper
+                                       private var characterToRoomMapper: CharacterToRoomMapper,
+                                       private var roomToCharacterMapper: RoomToCharacterMapper
 ) : LocalRepositoryInterface {
 
     private val characterDao: CharacterDao? =

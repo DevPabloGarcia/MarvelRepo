@@ -25,7 +25,8 @@
                 android:layout_height="match_parent"
                 android:scaleType="centerCrop"
                 app:layout_collapseMode="parallax"
-                app:layout_collapseParallaxMultiplier="0.5"/>
+                app:layout_collapseParallaxMultiplier="0.5"
+                android:contentDescription="@string/character_detail_image_content_description"/>
 
             <Toolbar
                 android:id="@+id/character_detail_toolbar"

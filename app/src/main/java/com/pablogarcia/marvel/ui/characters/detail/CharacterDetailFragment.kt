@@ -8,7 +8,6 @@ import android.widget.ImageView
 import android.widget.Toast
 import android.widget.Toolbar
 import androidx.appcompat.widget.AppCompatTextView
-import androidx.lifecycle.observe
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -19,10 +18,8 @@ import com.pablogarcia.marvel.model.Character
 import com.pablogarcia.marvel.model.Thumbnail
 import com.pablogarcia.marvel.ui.base.BaseFragment
 import com.pablogarcia.marvel.ui.base.UiState
-import com.pablogarcia.marvel.ui.characters.list.CharactersAdapter
 import com.pablogarcia.marvel.ui.custom.LoadingView
 import com.squareup.picasso.Picasso
-import kotlinx.android.synthetic.main.fragment_character_detail.*
 import javax.inject.Inject
 
 class CharacterDetailFragment: BaseFragment() {
@@ -74,9 +71,7 @@ class CharacterDetailFragment: BaseFragment() {
         loadingView = view.findViewById(R.id.loadingView)
 
         toolbar.setNavigationIcon(androidx.appcompat.R.drawable.abc_ic_ab_back_material)
-        toolbar.setNavigationOnClickListener {
-            findNavController().popBackStack()
-        }
+        toolbar.setNavigationOnClickListener { findNavController().popBackStack() }
 
     }
 

@@ -22,9 +22,9 @@ class RoomDataBaseUnitText {
     private lateinit var characterTwo: Character
     private lateinit var characterThree: Character
 
-    lateinit var characterDao: CharacterDao
-    lateinit var database: CharactersDataBase
-    lateinit var context: Context
+    private lateinit var characterDao: CharacterDao
+    private lateinit var database: CharactersDataBase
+    private lateinit var context: Context
 
 
     @Before

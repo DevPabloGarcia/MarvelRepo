@@ -2,15 +2,10 @@ package com.pablogarcia.marvel.data.responses
 
 class ComicsResponse {
 
-    var code: Int? = null
-    var status: String? = null
-    var copyright: String? = null
     var data: DataResponse? = null
 
     inner class DataResponse {
 
-        var offset: Int? = null
-        var limit: Int? = null
         var results: List<ComicResponse>? = null
     }
 
