@@ -5,4 +5,6 @@
     <string name="menu_favorites">Favorites</string>
     <string name="menu_all">All</string>
     <string name="character_detail_comics">Appears in:</string>
+    <string name="character_detail">Character Detail</string>
+    <string name="character_list">Character List</string>
 </resources>

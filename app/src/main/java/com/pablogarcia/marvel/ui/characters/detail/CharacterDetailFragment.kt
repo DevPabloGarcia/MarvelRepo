@@ -6,8 +6,10 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.Toast
+import android.widget.Toolbar
 import androidx.appcompat.widget.AppCompatTextView
 import androidx.lifecycle.observe
+import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -20,6 +22,7 @@ import com.pablogarcia.marvel.ui.base.UiState
 import com.pablogarcia.marvel.ui.characters.list.CharactersAdapter
 import com.pablogarcia.marvel.ui.custom.LoadingView
 import com.squareup.picasso.Picasso
+import kotlinx.android.synthetic.main.fragment_character_detail.*
 import javax.inject.Inject
 
 class CharacterDetailFragment: BaseFragment() {
@@ -27,6 +30,7 @@ class CharacterDetailFragment: BaseFragment() {
     @Inject
     lateinit var viewModel: CharacterDetailViewModel
 
+    private lateinit var toolbar: Toolbar
     private lateinit var characterImageView: ImageView
     private lateinit var characterNameTextView: AppCompatTextView
     private lateinit var characterDescriptionView: AppCompatTextView
@@ -62,11 +66,18 @@ class CharacterDetailFragment: BaseFragment() {
 
     override fun bindViews(view: View) {
 
+        toolbar = view.findViewById(R.id.character_detail_toolbar)
         characterImageView = view.findViewById(R.id.character_detail_image)
         characterNameTextView = view.findViewById(R.id.character_detail_name)
         characterDescriptionView = view.findViewById(R.id.character_detail_description)
         comicList = view.findViewById(R.id.character_detail_comics)
         loadingView = view.findViewById(R.id.loadingView)
+
+        toolbar.setNavigationIcon(androidx.appcompat.R.drawable.abc_ic_ab_back_material)
+        toolbar.setNavigationOnClickListener {
+            findNavController().popBackStack()
+        }
+
     }
 
     //endregion
@@ -83,7 +94,7 @@ class CharacterDetailFragment: BaseFragment() {
         characterNameTextView.text = character.name
         characterDescriptionView.text = character.description
         Picasso.with(context)
-            .load(character.thumbnail?.obtainImage(Thumbnail.Companion.ImageType.PORTRAIT_LARGE))
+            .load(character.thumbnail?.obtainImage(Thumbnail.Companion.ImageType.LANDSCAPE_LARGE))
             .into(characterImageView)
     }
 

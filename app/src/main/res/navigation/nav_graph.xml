@@ -8,7 +8,7 @@
     <fragment
         android:id="@+id/character_list"
         android:name="com.pablogarcia.marvel.ui.characters.list.CharacterListFragment"
-        android:label="character_list"
+        android:label="@string/character_list"
         tools:layout="@layout/fragment_character_list">
 
         <action
@@ -24,7 +24,7 @@
     <fragment
         android:id="@+id/character_detail"
         android:name="com.pablogarcia.marvel.ui.characters.detail.CharacterDetailFragment"
-        android:label="character_detail"
+        android:label="@string/character_detail"
         tools:layout="@layout/fragment_character_detail">
 
         <argument

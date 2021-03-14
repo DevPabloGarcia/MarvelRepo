@@ -3,13 +3,13 @@ package com.pablogarcia.marvel
 import android.os.Bundle
 import android.view.MenuItem
 import android.view.View
-import android.widget.Toolbar
 import androidx.appcompat.app.AppCompatActivity
 import androidx.navigation.NavController
 import androidx.navigation.NavDestination
-import androidx.navigation.findNavController
 import androidx.navigation.fragment.NavHostFragment
-import androidx.navigation.ui.NavigationUI
+import androidx.navigation.ui.AppBarConfiguration
+import androidx.navigation.ui.setupWithNavController
+import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : AppCompatActivity() {
 
@@ -19,6 +19,7 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
         this.setupNavigation()
+        setSupportActionBar(toolbar)
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
@@ -37,13 +38,13 @@ class MainActivity : AppCompatActivity() {
      * Setup navigation view with bottom navigation view
      */
     private fun setupNavigation() {
-        val navHostFragment = supportFragmentManager.findFragmentById(
-            R.id.nav_host_fragment
-        ) as NavHostFragment
+        val navHostFragment = supportFragmentManager.findFragmentById(R.id.nav_host_fragment) as NavHostFragment
         navController = navHostFragment.navController
+        val appBarConfiguration = AppBarConfiguration(navController.graph)
         navController.addOnDestinationChangedListener { _, destination, _ ->
             this.updateToolbarBackButton(destination)
         }
+        toolbar.setupWithNavController(navController, appBarConfiguration)
     }
 
     /**
@@ -51,8 +52,8 @@ class MainActivity : AppCompatActivity() {
      */
     private fun updateToolbarBackButton(destination: NavDestination) {
         when (destination.id) {
-            R.id.character_list -> supportActionBar?.setDisplayHomeAsUpEnabled(false)
-            R.id.character_detail -> supportActionBar?.setDisplayHomeAsUpEnabled(true)
+            R.id.character_list -> toolbar.visibility = View.VISIBLE
+            R.id.character_detail -> toolbar.visibility = View.GONE
         }
     }
 
