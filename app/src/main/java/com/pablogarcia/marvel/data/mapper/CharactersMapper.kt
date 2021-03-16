@@ -30,7 +30,7 @@ class CharactersMapper @Inject constructor(): BaseMapper<CharactersResponse, Lis
             data?.let { _response ->
 
                 id = _response.id
-                name = data.name
+                name = _response.name
                 description = _response.description
                 thumbnail = Thumbnail(_response.thumbnail?.path, _response.thumbnail?.extension)
             }

@@ -18,4 +18,3 @@ class ComicsResponse {
         var thumbnail: ThumbnailResponse? = null
     }
 }
-

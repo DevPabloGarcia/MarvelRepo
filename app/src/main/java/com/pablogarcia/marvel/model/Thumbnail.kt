@@ -5,11 +5,11 @@ import kotlinx.parcelize.Parcelize
 
 @Parcelize
 data class Thumbnail(
-    var path: String?,
-    var extension: String?
+    var path: String? = null,
+    var extension: String? = null
 ) : Parcelable {
 
-    fun obtainImage(imageType: ImageType): String {
+    fun obtainImage(imageType: ImageType?): String {
 
         val imageSuffix = when (imageType) {
 
@@ -17,6 +17,7 @@ data class Thumbnail(
             ImageType.LANDSCAPE_LARGE -> largeLandscapeSuffix
             ImageType.PORTRAIT_SMALL -> smallPortraitSuffix
             ImageType.PORTRAIT_LARGE -> largePortraitSuffix
+            else -> largePortraitSuffix
         }
 
         var imagePrefix = path

@@ -3,20 +3,20 @@ package com.pablogarcia.marvel
 import android.content.Context
 import androidx.room.Room
 import androidx.test.platform.app.InstrumentationRegistry
+import com.pablogarcia.marvel.framework.room.Character
 import com.pablogarcia.marvel.framework.room.CharacterDao
 import com.pablogarcia.marvel.framework.room.CharactersDataBase
-import com.pablogarcia.marvel.framework.room.Character
 import com.pablogarcia.marvel.framework.room.Thumbnail
 import org.junit.After
+import org.junit.Assert
 import org.junit.Before
 import org.junit.Test
 import org.junit.runner.RunWith
 import org.robolectric.RobolectricTestRunner
 import java.io.IOException
-import org.junit.Assert
 
 @RunWith(RobolectricTestRunner::class)
-class RoomDataBaseUnitText {
+class RoomDataBaseUnitTest {
 
     private lateinit var characterOne: Character
     private lateinit var characterTwo: Character
