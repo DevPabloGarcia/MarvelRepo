@@ -28,6 +28,7 @@ class RoomDatabase @Inject constructor(application: Application) : LocalReposito
     }
 
     override suspend fun getFavoriteCharacters(mapper: RoomToCharacterMapper): Result<List<Character>> {
+
         val characters = mutableListOf<Character>()
         characterDao?.getFavoriteCharacters()?.forEach { _character ->
             characters.add(mapper.map(_character))
