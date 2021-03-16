@@ -10,7 +10,6 @@ class RoomToCharacterMapper @Inject constructor(): BaseMapper<Character, com.pab
     override fun map(response: Character?): com.pablogarcia.marvel.model.Character {
 
         return com.pablogarcia.marvel.model.Character().apply {
-
             id = response?.id
             name = response?.name
             description = response?.description
@@ -18,5 +17,4 @@ class RoomToCharacterMapper @Inject constructor(): BaseMapper<Character, com.pab
             like = response?.like == 1
         }
     }
-
 }

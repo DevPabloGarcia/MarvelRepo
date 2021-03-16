@@ -14,7 +14,6 @@ class ComicsAdapter: RecyclerView.Adapter<ComicsAdapter.ComicViewHolder>() {
 
     private var comics: MutableList<Comic> = mutableListOf()
 
-
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ComicViewHolder {
         return ComicViewHolder(
             LayoutInflater.from(parent.context).inflate(

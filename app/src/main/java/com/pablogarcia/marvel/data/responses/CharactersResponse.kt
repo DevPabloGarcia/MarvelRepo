@@ -4,12 +4,12 @@ class CharactersResponse {
 
     var data: DataResponse? = null
 
-    class DataResponse {
+    inner class DataResponse {
 
         var results: MutableList<CharacterResponse>? = null
     }
 
-    class CharacterResponse {
+    inner class CharacterResponse {
 
         var id: Int? = null
         var name: String? = null
