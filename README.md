@@ -1,23 +1,30 @@
 # MarvelRepo
 
-Navegacion por componente de navegacion de Android
+Programing language: Kotlin
+Pattern design: Model View ViewModel
 
-Patron de diseño utilizado: MVVM
-
-Lenguaje: Kotlin
-
-Librerias usadas
-  - Retrofit para las llamadas a backend
-  - Dagger2 para la inyeccion de dependecias
-  - Lottie para la animacion de carga
-  - Picasso para la carga de imagenes
+Used libraries:
+  - Retrofit
+  - Dagger2
+  - Lottie
+  - Picasso
+  - Room
+  - Robolectric
   
-Tecnologias usadas
-  - Android estudio como entorno de desarrollo
-  - Postman para la prueba de las llamadas
-  - Terminal de mac para la subida de codigo a github
-  
-Descripcion de la app.
+Description.
 
-La app esta preparada para la carga completa del modelo, de momento solo trata los datos, "name", "description" y "thumbnail".
-Consta de una vista con el listado de los 20 primeros personajes y otra vista con el detalle del personaje seleccionado.
+Character's List
+    * Character image
+    * Character name
+    * Like icon button
+The user can navigate to character's detail.
+The user can save the character as favorite
+The user can see his/her favorite characters
+At the first app load, 100 characters are obtained from server and saved in local database.
+When the user scroll to the last loaded character a new request is made in order to obtain another
+100 characters and save them into local database. 
+
+Character's details:
+    * Collapsible toolbar with the character's image
+    * Character's name and description
+    * Character's list of comics where it appears.

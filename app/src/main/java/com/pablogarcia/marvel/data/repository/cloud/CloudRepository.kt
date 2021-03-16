@@ -1,16 +1,14 @@
 package com.pablogarcia.marvel.data.repository.cloud
 
+import com.pablogarcia.marvel.data.mapper.CharactersMapper
+import com.pablogarcia.marvel.data.mapper.ComicsMapper
 import com.pablogarcia.marvel.data.repository.Result
 import com.pablogarcia.marvel.model.Character
-import javax.inject.Inject
+import com.pablogarcia.marvel.model.Comic
 
+interface CloudRepository {
 
-class CloudRepository @Inject constructor(
-    var cloudDatabase: CloudRepositoryInterface
-) {
+    suspend fun getCharacters(offset: Int, mapper: CharactersMapper) : Result<List<Character>>
 
-    suspend fun getCharacters(offset: Int) : Result<List<Character>>{
-
-        return cloudDatabase.getCharacters(offset)
-    }
+    suspend fun getComics(characterId: String, mapper: ComicsMapper) : Result<List<Comic>>
 }

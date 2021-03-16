@@ -1,31 +1,44 @@
 package com.pablogarcia.marvel.data.repository.local
 
 import com.pablogarcia.marvel.data.repository.Result
+import com.pablogarcia.marvel.framework.room.mapper.CharacterToRoomMapper
+import com.pablogarcia.marvel.framework.room.mapper.RoomToCharacterMapper
 import com.pablogarcia.marvel.model.Character
-import javax.inject.Inject
 
-class LocalRepository @Inject constructor(var localDatabase: LocalRepositoryInterface) {
+interface LocalRepository {
 
-    suspend fun insertAll(characters: List<Character>) {
+    /**
+     * Insert a list of characters
+     *
+     * @param characters - character list
+     */
+    suspend fun insertAll(characters: List<Character>, mapper: CharacterToRoomMapper)
 
-        localDatabase.insertAll(characters)
-    }
+    /**
+     * Obtain a list of characters
+     *
+     * @return list of characters
+     */
+    suspend fun getCharacters(mapper: RoomToCharacterMapper): Result<List<Character>>
 
-    suspend fun getCharacters(favorites: Boolean): Result<List<Character>> {
+    /**
+     * Obtain a list of characters
+     *
+     * @return list of characters
+     */
+    suspend fun getFavoriteCharacters(mapper: RoomToCharacterMapper): Result<List<Character>>
 
-        return if(favorites)
-            localDatabase.getFavoriteCharacters()
-        else
-            localDatabase.getCharacters()
-    }
+    /**
+     * Count characters
+     *
+     * @return number of characters
+     */
+    suspend fun getNumberOfCharacters(): Result<Int>
 
-    suspend fun getCharactersCount(): Result<Int> {
-
-        return localDatabase.getNumberOfCharacters()
-    }
-
-    suspend fun updateCharacter(character: Character) {
-
-        localDatabase.updateCharacter(character)
-    }
+    /**
+     * Update character with new data
+     *
+     * @param character - new character
+     */
+    suspend fun updateCharacter(character: Character, mapper: CharacterToRoomMapper)
 }

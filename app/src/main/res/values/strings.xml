@@ -1,6 +1,13 @@
 <resources>
-    <string name="app_name">Marvel</string>
-    <string name="loading_error">Algo ha ido mal, intentelo de nuevo</string>
-    <string name="menu_favorites">Favoritos</string>
-    <string name="menu_all">Todos</string>
+    <string name="app_name">"Marvel"</string>
+    <string name="loading_error">"Something is Wrong! try later."</string>
+    <string name="menu_favorites">"Favorites"</string>
+    <string name="menu_all">"All"</string>
+    <string name="character_detail_comics">"Appears in:"</string>
+    <string name="character_detail">vCharacter Detail"</string>
+    <string name="character_list">"Character List"</string>
+    <string name="character_detail_image_content_description">"Character detail image"</string>
+    <string name="character_row_image_content_description">"Character row image"</string>
+    <string name="character_row_like_content_description">"Character row image"</string>
+    <string name="comic_row_image_content_description">"Comic row image"</string>
 </resources>

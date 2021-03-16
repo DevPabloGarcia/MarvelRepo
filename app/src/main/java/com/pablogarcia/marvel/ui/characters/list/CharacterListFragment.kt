@@ -3,11 +3,7 @@ package com.pablogarcia.marvel.ui.characters.list
 import android.os.Bundle
 import android.view.*
 import android.widget.Toast
-import androidx.lifecycle.observe
 import androidx.navigation.fragment.findNavController
-import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.recyclerview.widget.RecyclerView
-import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
 import com.pablogarcia.marvel.R
 import com.pablogarcia.marvel.di.MarvelApplication
 import com.pablogarcia.marvel.model.Character
@@ -23,7 +19,6 @@ class CharacterListFragment: BaseFragment() {
     lateinit var viewModel: CharacterListViewModel
 
     private lateinit var characterRecyclerView: LoadDataRecyclerView
-    private lateinit var characterSwipe: SwipeRefreshLayout
     private lateinit var loadingView: LoadingView
 
     private lateinit var adapter: CharactersAdapter
@@ -38,6 +33,7 @@ class CharacterListFragment: BaseFragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
+
         setHasOptionsMenu(true)
         return inflater.inflate(R.layout.fragment_character_list, container, false)
     }
@@ -46,17 +42,18 @@ class CharacterListFragment: BaseFragment() {
 
         super.onViewCreated(view, savedInstanceState)
         this.setupAdapter()
-        this.setupSwipeLayout()
         this.observeData()
         viewModel.onViewCreated()
     }
 
     override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
+
         inflater.inflate(R.menu.filter_menu, menu)
         super.onCreateOptionsMenu(menu, inflater)
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
+
         when(item.itemId) {
             R.id.menu_all_characters -> adapter.clearFilter()
             R.id.menu_favorite_characters -> adapter.filterFavorites()
@@ -70,7 +67,6 @@ class CharacterListFragment: BaseFragment() {
     override fun bindViews(view: View) {
 
         characterRecyclerView = view.findViewById(R.id.character_list_recycler)
-        characterSwipe = view.findViewById(R.id.character_list_swipe)
         loadingView = view.findViewById(R.id.loadingView)
     }
 
@@ -84,19 +80,15 @@ class CharacterListFragment: BaseFragment() {
     private fun observeData() {
 
         viewModel.characters.observe(viewLifecycleOwner) { _characters ->
-
             adapter.setData(_characters)
         }
 
         viewModel.uiState.observe(viewLifecycleOwner) { isLoading ->
-
-            characterSwipe.isRefreshing = false
             when (isLoading) {
-
                 UiState.SUCCESS -> loadingView.hide()
                 UiState.LOADING -> loadingView.show()
-                UiState.ERROR -> {
-
+                UiState.ERROR,
+                null -> {
                     loadingView.hide()
                     showError()
                 }
@@ -114,17 +106,6 @@ class CharacterListFragment: BaseFragment() {
         characterRecyclerView.callback = {
             if(!adapter.isFiltered)
                 viewModel.loadCharacters(fromLocal = false, showLoading = false)
-        }
-    }
-
-    /**
-     * Setup swipe layout
-     */
-    private fun setupSwipeLayout() {
-
-        characterSwipe.setOnRefreshListener {
-
-            viewModel.loadCharacters(fromLocal = false)
         }
     }
 

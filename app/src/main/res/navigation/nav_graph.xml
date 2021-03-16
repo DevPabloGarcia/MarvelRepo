@@ -8,23 +8,23 @@
     <fragment
         android:id="@+id/character_list"
         android:name="com.pablogarcia.marvel.ui.characters.list.CharacterListFragment"
-        android:label="character_list"
+        android:label="@string/character_list"
         tools:layout="@layout/fragment_character_list">
 
         <action
             android:id="@+id/character_detail_action"
             app:destination="@id/character_detail"
-            app:enterAnim="@anim/fragment_open_enter"
-            app:exitAnim="@anim/fragment_close_exit"
-            app:popEnterAnim="@anim/fragment_open_enter"
-            app:popExitAnim="@anim/fragment_close_exit" />
+            app:enterAnim="@anim/slide_left"
+            app:exitAnim="@anim/wait_anim"
+            app:popEnterAnim="@anim/wait_anim"
+            app:popExitAnim="@anim/slide_right" />
 
     </fragment>
 
     <fragment
         android:id="@+id/character_detail"
         android:name="com.pablogarcia.marvel.ui.characters.detail.CharacterDetailFragment"
-        android:label="character_detail"
+        android:label="@string/character_detail"
         tools:layout="@layout/fragment_character_detail">
 
         <argument

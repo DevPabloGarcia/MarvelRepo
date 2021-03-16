@@ -3,7 +3,6 @@ package com.pablogarcia.marvel.ui.custom
 import android.content.Context
 import android.util.AttributeSet
 import android.widget.RelativeLayout
-import com.airbnb.lottie.LottieAnimationView
 import com.pablogarcia.marvel.R
 
 class LoadingView: RelativeLayout {

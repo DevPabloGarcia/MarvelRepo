@@ -12,17 +12,16 @@ private const val HTTP_TIMEOUT_SECS = 30
 
 const val URL_BACKEND = "https://gateway.marvel.com/v1/public/"
 
-private const val API_KEY = "cdc99b52e39733a0f343dbc7b52261aa"
-
-private const val HASH = "d2d584b9a2b8c1261b3f0940ed805d3d"
-
-private const val TIMESTAMP = "1"
-
 private const val HEADER_TS = "ts"
-
 private const val HEADER_API_KEY = "apikey"
-
 private const val HEADER_HASH = "hash"
+private const val HEADER_LIMIT = "limit"
+
+private const val API_KEY = "cdc99b52e39733a0f343dbc7b52261aa"
+private const val HASH = "d2d584b9a2b8c1261b3f0940ed805d3d"
+private const val TIMESTAMP = "1"
+private const val LIMIT = "100"
+
 
 object RetrofitServiceInterface {
 
@@ -59,6 +58,7 @@ object RetrofitServiceInterface {
             addQueryParameter(HEADER_TS, TIMESTAMP)
             addQueryParameter(HEADER_API_KEY, API_KEY)
             addQueryParameter(HEADER_HASH, HASH)
+            addQueryParameter(HEADER_LIMIT, LIMIT)
         }.build()
         request.url(newUrl)
 

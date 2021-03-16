@@ -1,19 +1,20 @@
 package com.pablogarcia.marvel.data.responses
 
-class CharactersResponse {
+class ComicsResponse {
 
     var data: DataResponse? = null
 
-    class DataResponse {
+    inner class DataResponse {
 
-        var results: MutableList<CharacterResponse>? = null
+        var results: List<ComicResponse>? = null
     }
 
-    class CharacterResponse {
+    inner class ComicResponse {
 
         var id: Int? = null
-        var name: String? = null
+        var title: String? = null
         var description: String? = null
+        var pageCount: Int? = null
         var thumbnail: ThumbnailResponse? = null
     }
 }
